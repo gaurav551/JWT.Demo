@@ -9,7 +9,7 @@ namespace JWT.DEMO.Controllers
     [Authorize]
     [Route("api/[controller]")]
     [ApiController]
-    public class SecuredController : ControllerBase
+    public class AdminController : ControllerBase
     {
         [HttpGet]
         public IActionResult GetSecuredData()
