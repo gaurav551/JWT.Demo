@@ -9,20 +9,20 @@ namespace JWT.DEMO.Controllers
     [Authorize]
     [Route("api/[controller]")]
     [ApiController]
-    public class AdminController : ControllerBase
+    public class AdminController : Controller
     {
         [HttpGet]
-        public IActionResult GetSecuredData()
+        public IActionResult GetUser()
         {
             //Get UserInfo From Payload In Token
-            return Ok("This Secured Data is available only for Authenticated Users.");
+            var userIdFromClaimsInJwt = User.FindFirst("uid")?.Value;
+            return Ok($"Hi user {userIdFromClaimsInJwt}");
         }
         [HttpPost]
         [Authorize(Roles ="Administrator")]
-        public IActionResult PostSecuredData()
+        public IActionResult Post()
         {
-
-            return Ok("This Secured Data is available only for Admin Users.");
+           return Ok("Hi Admin");
         }
       
     }
